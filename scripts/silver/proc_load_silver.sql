@@ -156,8 +156,7 @@ BEGIN
                THEN sls_sales / NULLIF(sls_quantity,0)
           ELSE sls_price -- Derive price if original value is invalid
          END AS sls_price
-    FROM bronze.crm_sales_details
-    WHERE sls_cust_id NOT IN (SELECT cst_id FROM silver.crm_cust_info);
+    FROM bronze.crm_sales_details;
     SET @end_time = GETDATE();
     PRINT'>> Load Duration;'+ CAST(DATEDIFF(SECOND, @start_time,@end_time) AS NVARCHAR) + 'seconds'
     PRINT'>>----------------';
